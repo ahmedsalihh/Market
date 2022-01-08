@@ -34,10 +34,10 @@ const Header = () => (
       <LogoContainer>
         <Logo href='#'>Market</Logo>
       </LogoContainer>
-      <ChartContainer>
+      {/* <ChartContainer>
         <div style={{ marginLeft: '2rem', marginRight: '1rem' }}>icon</div>
         <div style={{ marginLeft: '1rem', marginRight: '2rem' }}>price</div>
-      </ChartContainer>
+      </ChartContainer> */}
     </Container>
   </HeaderContainer>
 );

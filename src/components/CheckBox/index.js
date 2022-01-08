@@ -8,8 +8,11 @@ const RadioButtonContainerStyled = styled.div`
 const RadioButtonStyled = styled.input.attrs({
   type: 'checkbox',
 })`
-  width: 1.5em;
-  height: 1.5em;
+  width: 22px;
+  height: 22px;
+  &:checked:after {
+    backgrpund-color: #1ea4ce;
+  }
 `;
 
 const LabelStyled = styled.label`
@@ -19,8 +22,12 @@ const LabelStyled = styled.label`
 `;
 
 const SpanStyled = styled.span`
-  margin-left: 1rem;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
   word-wrap: normal;
+  color: #525252;
+  margin-left: 8px;
 `;
 
 const RadioButton = ({ id, label, name, onChange }) => (

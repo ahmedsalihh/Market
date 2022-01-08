@@ -2,14 +2,17 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const RadioButtonContainerStyled = styled.div`
-  margin-top: 0.5rem;
+  height: 22px;
 `;
 
 const RadioButtonStyled = styled.input.attrs({
   type: 'radio',
 })`
-  width: 1.5em;
-  height: 1.5em;
+  width: 22px;
+  height: 22px;
+  &:checked {
+    background-color: #1ea4ce;
+  }
 `;
 
 const LabelStyled = styled.label`
@@ -19,7 +22,12 @@ const LabelStyled = styled.label`
 `;
 
 const SpanStyled = styled.span`
-  margin-left: 1rem;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  word-wrap: normal;
+  color: #525252;
+  margin-left: 8px;
 `;
 
 const RadioButton = ({ id, label, name, onChange }) => (
