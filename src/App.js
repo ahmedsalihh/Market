@@ -4,9 +4,10 @@ import Header from './components/Header';
 import Layout from './components/Layout';
 import Sidebar from './components/Sidebar';
 import SortingComponent from './components/SortingComponent';
-import TagsComponent from './components/TagsComponent';
+import BrandsContainer from './containers/BrandsContainer';
 import ProductsContainer from './containers/ProductContainer';
 import ShopingChartContainer from './containers/ShoppingChartContainer';
+import TagsContainer from './containers/TagsContainer';
 
 function App() {
   const sortingItems = [
@@ -48,8 +49,8 @@ function App() {
         <Layout>
           <Sidebar>
             <SortingComponent items={sortingItems} />
-            <TagsComponent title='Brands' items={brandsItems} />
-            <TagsComponent title='Tags' items={tagsItems} />
+            <BrandsContainer title='Brands' items={brandsItems} />
+            <TagsContainer title='Tags' items={tagsItems} />
           </Sidebar>
           <Content>
             <ProductsContainer />

@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import CheckBox from '../CheckBox';
-import Input from '../Input';
+import CheckBox from '../../components/CheckBox';
+import Input from '../../components/Input';
 
-const TagsContainer = styled.div`
+import * as tagActions from '../../redux/actions/tagActions';
+
+const TagsContainerStyled = styled.div`
   width: 296px;
 `;
 
@@ -40,26 +43,17 @@ const ListContainer = styled.div`
   overflow: auto;
 `;
 
-const TagsComponent = ({ items, title }) => {
-  const [filter, setFilter] = useState(null);
-  const [filteredItems, setFilteredItems] = useState([]);
-
+const TagsContainer = ({ tags, title, getTags, setFilter }) => {
   useEffect(() => {
-    if (filter) {
-      setFilteredItems(
-        items.filter(f => f.label.toLowerCase().includes(filter.toLowerCase())),
-      );
-    } else {
-      setFilteredItems(items);
-    }
-  }, [filter, items]);
+    getTags();
+  }, []);
 
   const onSearch = e => {
     setFilter(e.target.value);
   };
 
   return (
-    <TagsContainer>
+    <TagsContainerStyled>
       <TitleContainer>
         <TitleText>{title}</TitleText>
       </TitleContainer>
@@ -69,25 +63,37 @@ const TagsComponent = ({ items, title }) => {
         </InputContainerStyled>
         <ListContainer>
           <ul>
-            {filteredItems.map(item => (
-              <li key={item.id}>
-                <CheckBox id={item.id} label={item.label} name='brand' />
+            {tags.map(item => (
+              <li key={item}>
+                <CheckBox id={item} label={item} name='brand' />
               </li>
             ))}
           </ul>
         </ListContainer>
       </ItemsContainer>
-    </TagsContainer>
+    </TagsContainerStyled>
   );
 };
 
-TagsComponent.propTypes = {
-  items: PropTypes.arrayOf(
+TagsContainer.propTypes = {
+  tags: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };
 
-export default TagsComponent;
+const mapStateToProps = state => {
+  return {
+    tags: state.tags.tags,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getTags: () => dispatch(tagActions.getTags()),
+    setFilter: filter => dispatch(tagActions.setFilter(filter)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TagsContainer);
