@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const SidebarStyled = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-gap: 20px;
   width: 296px;
   padding-top: 38.36px;

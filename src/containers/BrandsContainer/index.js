@@ -44,19 +44,6 @@ const ListContainer = styled.div`
 `;
 
 const BrandsContainer = ({ brands, title, getBrands, setFilter }) => {
-  // const [filter, setFilter] = useState(null);
-  // const [filteredItems, setFilteredItems] = useState([]);
-
-  // useEffect(() => {
-  //   if (filter) {
-  //     setFilteredItems(
-  //       items.filter(f => f.label.toLowerCase().includes(filter.toLowerCase())),
-  //     );
-  //   } else {
-  //     setFilteredItems(items);
-  //   }
-  // }, [filter, items]);
-
   useEffect(() => {
     getBrands();
   }, []);

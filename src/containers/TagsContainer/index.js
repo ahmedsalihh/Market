@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -46,7 +46,7 @@ const ListContainer = styled.div`
 const TagsContainer = ({ tags, title, getTags, setFilter }) => {
   useEffect(() => {
     getTags();
-  }, []);
+  }, [getTags]);
 
   const onSearch = e => {
     setFilter(e.target.value);
@@ -76,11 +76,7 @@ const TagsContainer = ({ tags, title, getTags, setFilter }) => {
 };
 
 TagsContainer.propTypes = {
-  tags: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 const mapStateToProps = state => {

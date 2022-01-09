@@ -5,6 +5,8 @@ const ProductCardStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 124px;
+  height: 225px;
+  width: 124px;
 `;
 
 const ProductCardContainerStyled = styled.div`
@@ -34,7 +36,7 @@ const ProductNameStyled = styled.span`
   margin-bottom: 8px;
 `;
 
-const ProductCard = ({ id, amount, name }) => {
+const ProductCard = ({ id, price, name }) => {
   const onAddClick = id => {
     console.log('added', id);
   };
@@ -44,10 +46,12 @@ const ProductCard = ({ id, amount, name }) => {
         <ImageContainer></ImageContainer>
       </ProductCardContainerStyled>
       <AmountStyled>
-        {amount.toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' })}
+        {price.toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' })}
       </AmountStyled>
       <ProductNameStyled>{name}</ProductNameStyled>
-      <Button onClick={() => onAddClick(id)}>Add</Button>
+      <Button style={{ marginTop: 'auto' }} onClick={() => onAddClick(id)}>
+        Add
+      </Button>
     </ProductCardStyled>
   );
 };

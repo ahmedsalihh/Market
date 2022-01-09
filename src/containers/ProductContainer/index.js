@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import FilterComponent from '../../components/FilterComponent';
 import ProductCard from '../../components/ProductCard';
+
+import * as productActions from '../../redux/actions/productActions';
 
 const ProductContainerStyled = styled.div`
   display: grid;
@@ -26,7 +30,11 @@ const filteItems = [
   { id: 2, name: 'shirt' },
 ];
 
-const ProductsContainer = ({ products }) => {
+const ProductsContainer = ({ products, getProducts }) => {
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
+
   const onFilter = selectedItems => {
     console.group(selectedItems);
   };
@@ -36,7 +44,7 @@ const ProductsContainer = ({ products }) => {
       <FilterComponent items={filteItems} onFilter={onFilter} />
       <ProductContainerStyled>
         {products.map(product => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard key={product.slug} {...product} />
         ))}
       </ProductContainerStyled>
     </>
@@ -47,51 +55,22 @@ ProductsContainer.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       image: PropTypes.string.isRequired,
-      amount: PropTypes.number.isRequired,
-      id: PropTypes.number.isRequired,
+      prıce: PropTypes.number.isRequired,
+      slug: PropTypes.number.isRequired,
     }),
   ).isRequired,
 };
 
-ProductsContainer.defaultProps = {
-  products: [
-    {
-      id: 1,
-      image: '',
-      name: 'test1',
-      amount: 14.99,
-    },
-    {
-      id: 2,
-      image: '',
-      name: 'test1',
-      amount: 14.99,
-    },
-    {
-      id: 3,
-      image: '',
-      name: 'test1',
-      amount: 14.99,
-    },
-    {
-      id: 4,
-      image: '',
-      name: 'test1',
-      amount: 14.99,
-    },
-    {
-      id: 5,
-      image: '',
-      name: 'test1',
-      amount: 14.99,
-    },
-    {
-      id: 6,
-      image: '',
-      name: 'test1',
-      amount: 14.99,
-    },
-  ],
+const mapStateToProps = state => {
+  return {
+    products: state.products.products,
+  };
 };
 
-export default ProductsContainer;
+const mapDispatchToProps = dispatch => {
+  return {
+    getProducts: () => dispatch(productActions.getProducts()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);
