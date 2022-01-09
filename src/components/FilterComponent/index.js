@@ -16,7 +16,7 @@ const FilterComponent = ({ items, onFilter }) => {
 
   useEffect(() => {
     setSelecteditems(items.map(item => ({ ...item, selected: false })));
-  }, []);
+  }, [items]);
 
   const onSelect = item => {
     const tmpSelected = selectedItems.map(data =>

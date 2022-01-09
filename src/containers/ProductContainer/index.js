@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import FilterComponent from '../../components/FilterComponent/indec';
+import FilterComponent from '../../components/FilterComponent';
 import ProductCard from '../../components/ProductCard';
 
 const ProductContainerStyled = styled.div`

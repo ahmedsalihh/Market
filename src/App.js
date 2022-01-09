@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar';
 import SortingComponent from './components/SortingComponent';
 import TagsComponent from './components/TagsComponent';
 import ProductsContainer from './containers/ProductContainer';
+import ShopingChartContainer from './containers/ShoppingChartContainer';
 
 function App() {
   const sortingItems = [
@@ -35,6 +36,11 @@ function App() {
     { id: 't7', label: 'Tag 7' },
   ];
 
+  const chratItems = [
+    { id: 1, name: 'Item1', amount: '14.99', count: 1 },
+    { id: 2, name: 'Item2', amount: '13.99', count: 1 },
+  ];
+
   return (
     <div>
       <Header />
@@ -49,9 +55,7 @@ function App() {
             <ProductsContainer />
           </Content>
           <Sidebar>
-            <SortingComponent items={sortingItems} />
-            <TagsComponent title='Brands' items={brandsItems} />
-            <TagsComponent title='Tags' items={tagsItems} />
+            <ShopingChartContainer chartItems={chratItems} />
           </Sidebar>
         </Layout>
       </Container>
