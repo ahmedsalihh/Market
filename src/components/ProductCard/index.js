@@ -36,10 +36,7 @@ const ProductNameStyled = styled.span`
   margin-bottom: 8px;
 `;
 
-const ProductCard = ({ id, price, name }) => {
-  const onAddClick = id => {
-    console.log('added', id);
-  };
+const ProductCard = ({ slug, price, name, onAdd }) => {
   return (
     <ProductCardStyled>
       <ProductCardContainerStyled>
@@ -49,7 +46,7 @@ const ProductCard = ({ id, price, name }) => {
         {price.toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' })}
       </AmountStyled>
       <ProductNameStyled>{name}</ProductNameStyled>
-      <Button style={{ marginTop: 'auto' }} onClick={() => onAddClick(id)}>
+      <Button style={{ marginTop: 'auto' }} onClick={() => onAdd(slug)}>
         Add
       </Button>
     </ProductCardStyled>

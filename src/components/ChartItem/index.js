@@ -38,18 +38,22 @@ const AmountTextStyled = styled.div`
   color: #1ea4ce;
 `;
 
-const ChartItem = ({ id, name, amount, count }) => {
+const ChartItem = ({ slug, name, price, count, onIncrease, onDecrease }) => {
   return (
     <>
       <ChartItemContainerStyled>
         <div>
           <ProductnameTextStyled>{name}</ProductnameTextStyled>
-          <AmountTextStyled>{amount}</AmountTextStyled>
+          <AmountTextStyled>{price}</AmountTextStyled>
         </div>
         <RightContainerStyled>
-          <Button type='secondary'>-</Button>
+          <Button type='secondary' onClick={() => onDecrease(slug)}>
+            -
+          </Button>
           <AmountStyled>{count}</AmountStyled>
-          <Button type='secondary'>+</Button>
+          <Button type='secondary' onClick={() => onIncrease(slug)}>
+            +
+          </Button>
         </RightContainerStyled>
       </ChartItemContainerStyled>
       <Divider />

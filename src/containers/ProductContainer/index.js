@@ -7,6 +7,7 @@ import FilterComponent from '../../components/FilterComponent';
 import ProductCard from '../../components/ProductCard';
 
 import * as productActions from '../../redux/actions/productActions';
+import * as shoppingChartActions from '../../redux/actions/shoppingChartActions';
 
 const ProductContainerStyled = styled.div`
   display: grid;
@@ -30,13 +31,17 @@ const filteItems = [
   { id: 2, name: 'shirt' },
 ];
 
-const ProductsContainer = ({ products, getProducts }) => {
+const ProductsContainer = ({ products, getProducts, addToChart }) => {
   useEffect(() => {
     getProducts();
   }, [getProducts]);
 
   const onFilter = selectedItems => {
-    console.group(selectedItems);
+    console.log(selectedItems);
+  };
+
+  const onAdd = slug => {
+    addToChart(products.find(f => f.slug === slug));
   };
   return (
     <>
@@ -44,7 +49,7 @@ const ProductsContainer = ({ products, getProducts }) => {
       <FilterComponent items={filteItems} onFilter={onFilter} />
       <ProductContainerStyled>
         {products.map(product => (
-          <ProductCard key={product.slug} {...product} />
+          <ProductCard key={product.slug} {...product} onAdd={onAdd} />
         ))}
       </ProductContainerStyled>
     </>
@@ -55,7 +60,7 @@ ProductsContainer.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       image: PropTypes.string.isRequired,
-      prıce: PropTypes.number.isRequired,
+      price: PropTypes.number.isRequired,
       slug: PropTypes.number.isRequired,
     }),
   ).isRequired,
@@ -70,6 +75,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getProducts: () => dispatch(productActions.getProducts()),
+    addToChart: product => dispatch(shoppingChartActions.addToChart(product)),
   };
 };
 

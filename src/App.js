@@ -18,11 +18,6 @@ function App() {
     { id: 's4', label: 'old to new' },
   ];
 
-  const chratItems = [
-    { id: 1, name: 'Item1', amount: '14.99', count: 1 },
-    { id: 2, name: 'Item2', amount: '13.99', count: 1 },
-  ];
-
   return (
     <div>
       <Header />
@@ -38,7 +33,7 @@ function App() {
             <Footer />
           </Content>
           <Sidebar>
-            <ShopingChartContainer chartItems={chratItems} />
+            <ShopingChartContainer />
           </Sidebar>
         </Layout>
       </Container>
