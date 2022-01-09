@@ -4,6 +4,7 @@ const ContentStyled = styled.div`
   width: 608px;
   margin-left: 16px;
   margin-right: 16px;
+  padding-top: 38.36px;
 `;
 
 const Content = ({ children }) => <ContentStyled>{children}</ContentStyled>;

@@ -47,9 +47,7 @@ const ProductCard = ({ id, amount, name }) => {
         {amount.toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' })}
       </AmountStyled>
       <ProductNameStyled>{name}</ProductNameStyled>
-      {/* <ProductAddButtonContainer> */}
       <Button onClick={() => onAddClick(id)}>Add</Button>
-      {/* </ProductAddButtonContainer> */}
     </ProductCardStyled>
   );
 };
