@@ -4,7 +4,7 @@ const SidebarStyled = styled.div`
   display: flex;
   flex-direction: column;
   grid-gap: 20px;
-  width: 296px;
+  min-width: 296px;
   padding-top: 38.36px;
 `;
 

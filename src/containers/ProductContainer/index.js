@@ -26,15 +26,22 @@ const ProductTitleStyled = styled.span`
   color: #6f6f6f;
 `;
 
-const filteItems = [
+const filterItems = [
   { id: 1, name: 'mug' },
   { id: 2, name: 'shirt' },
 ];
 
-const ProductsContainer = ({ products, getProducts, addToChart }) => {
+const ProductsContainer = ({
+  products,
+  selectedBrands,
+  selectedTags,
+  sortingType,
+  getProducts,
+  addToChart,
+}) => {
   useEffect(() => {
-    getProducts();
-  }, [getProducts]);
+    getProducts(selectedBrands, selectedTags, sortingType);
+  }, [getProducts, selectedBrands, selectedTags, sortingType]);
 
   const onFilter = selectedItems => {
     console.log(selectedItems);
@@ -46,7 +53,7 @@ const ProductsContainer = ({ products, getProducts, addToChart }) => {
   return (
     <>
       <ProductTitleStyled>Products</ProductTitleStyled>
-      <FilterComponent items={filteItems} onFilter={onFilter} />
+      <FilterComponent items={filterItems} onFilter={onFilter} />
       <ProductContainerStyled>
         {products.map(product => (
           <ProductCard key={product.slug} {...product} onAdd={onAdd} />
@@ -61,19 +68,28 @@ ProductsContainer.propTypes = {
     PropTypes.shape({
       price: PropTypes.number.isRequired,
       slug: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  getProducts: PropTypes.func,
+  addToChart: PropTypes.func,
 };
 
 const mapStateToProps = state => {
   return {
     products: state.products.products,
+    selectedBrands: state.brands.selectedBrands,
+    selectedTags: state.tags.selectedTags,
+    sortingType: state.sorting.sortingType,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getProducts: () => dispatch(productActions.getProducts()),
+    getProducts: (selectedBrands, selectedTags, sortingType) =>
+      dispatch(
+        productActions.getProducts(selectedBrands, selectedTags, sortingType),
+      ),
     addToChart: product => dispatch(shoppingChartActions.addToChart(product)),
   };
 };
