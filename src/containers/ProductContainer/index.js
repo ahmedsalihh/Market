@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -27,8 +27,8 @@ const ProductTitleStyled = styled.span`
 `;
 
 const filterItems = [
-  { id: 1, name: 'mug' },
-  { id: 2, name: 'shirt' },
+  { id: 1, name: 'mug', selected: true },
+  { id: 2, name: 'shirt', selected: false },
 ];
 
 const ProductsContainer = ({
@@ -39,12 +39,16 @@ const ProductsContainer = ({
   getProducts,
   addToChart,
 }) => {
+  const [selectedType, setSelectedTypes] = useState([
+    { id: 1, name: 'mug', selected: true },
+  ]);
+
   useEffect(() => {
-    getProducts(selectedBrands, selectedTags, sortingType);
-  }, [getProducts, selectedBrands, selectedTags, sortingType]);
+    getProducts(selectedBrands, selectedTags, sortingType, selectedType);
+  }, [getProducts, selectedBrands, selectedTags, sortingType, selectedType]);
 
   const onFilter = selectedItems => {
-    console.log(selectedItems);
+    setSelectedTypes(selectedItems);
   };
 
   const onAdd = slug => {
@@ -86,9 +90,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getProducts: (selectedBrands, selectedTags, sortingType) =>
+    getProducts: (selectedBrands, selectedTags, sortingType, selectedType) =>
       dispatch(
-        productActions.getProducts(selectedBrands, selectedTags, sortingType),
+        productActions.getProducts(
+          selectedBrands,
+          selectedTags,
+          sortingType,
+          selectedType,
+        ),
       ),
     addToChart: product => dispatch(shoppingChartActions.addToChart(product)),
   };

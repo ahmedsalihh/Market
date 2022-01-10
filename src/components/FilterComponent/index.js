@@ -15,7 +15,7 @@ const FilterComponent = ({ items, onFilter }) => {
   const [selectedItems, setSelecteditems] = useState([]);
 
   useEffect(() => {
-    setSelecteditems(items.map(item => ({ ...item, selected: false })));
+    setSelecteditems(items.map(item => ({ ...item })));
   }, [items]);
 
   const onSelect = item => {
