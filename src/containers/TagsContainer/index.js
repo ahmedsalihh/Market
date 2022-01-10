@@ -74,12 +74,17 @@ const TagsContainer = ({
         </InputContainerStyled>
         <ListContainer>
           <ul>
+            <li>
+              <CheckBox
+                checked={selectedTags.length === 0 ? true : false}
+                id='all'
+                label='All'
+                name='brand'
+              />
+            </li>
             {tags.map((item, index) => (
               <li key={item}>
                 <CheckBox
-                  defaultChecked={
-                    item === 'All' && selectedTags.length === 0 ? true : false
-                  }
                   id={item}
                   label={item}
                   name='brand'

@@ -14,8 +14,8 @@ export default (state = defaultState, action) => {
     case tagActions.FETCH_TAGS_SUCCESS:
       return {
         ...state,
-        tags: ['All', ...action.tags],
-        allTags: ['All', ...action.tags],
+        tags: [...action.tags],
+        allTags: [...action.tags],
         error: null,
       };
     case tagActions.SET_TAG_FILTER:

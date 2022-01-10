@@ -14,8 +14,8 @@ export default (state = defaultState, action) => {
     case brandActions.FETCH_BRANDS_SUCCESS:
       return {
         ...state,
-        allBrands: [{ slug: 'all', name: 'All' }, ...action.brands],
-        brands: [{ slug: 'all', name: 'All' }, ...action.brands],
+        allBrands: [...action.brands],
+        brands: [...action.brands],
         error: null,
       };
     case brandActions.SET_BRAND_FILTER:
