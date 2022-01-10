@@ -1,7 +1,9 @@
 import * as tagActions from '../actions/tagActions';
 
 const defaultState = {
+  allTags: [],
   tags: [],
+  selectedTags: [],
   filter: null,
   error: null,
 };
@@ -10,18 +12,43 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case tagActions.FETCH_TAGS_SUCCESS:
-      let tmpTags;
-      if (state.filter !== null) {
-        tmpTags = [
-          'All',
-          ...action.tags.filter(f => f.name.includes(state.filter)),
-        ];
-      } else {
-        tmpTags = ['All', ...action.tags];
-      }
-      return { ...state, tags: [...tmpTags], error: null };
+      return {
+        ...state,
+        tags: ['All', ...action.tags],
+        allTags: ['All', ...action.tags],
+        error: null,
+      };
     case tagActions.SET_TAG_FILTER:
-      return { ...state, filter: action.filter };
+      let tmpTags;
+      if (action.filter === '' || action.filter === null) {
+        tmpTags = state.allTags;
+      } else {
+        tmpTags = [
+          ...state.allTags.filter(f =>
+            f.toLowerCase().includes(action.filter.toLowerCase()),
+          ),
+        ];
+      }
+      return {
+        ...state,
+        filter: action.filter,
+        tags: [...tmpTags],
+      };
+    case tagActions.SET_SELECTED_TAG:
+      let tmpSelected;
+      if (state.selectedTags.length === 0) {
+        tmpSelected = [action.tag];
+      } else {
+        if (state.selectedTags.find(f => f === action.tag) === undefined) {
+          tmpSelected = [...state.selectedTags, action.tag];
+        } else {
+          tmpSelected = state.selectedTags.filter(f => f !== action.tag);
+        }
+      }
+      return {
+        ...state,
+        selectedTags: [...tmpSelected],
+      };
     default:
       return state;
   }

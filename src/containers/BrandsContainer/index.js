@@ -43,13 +43,24 @@ const ListContainer = styled.div`
   overflow: auto;
 `;
 
-const BrandsContainer = ({ brands, title, getBrands, setFilter }) => {
+const BrandsContainer = ({
+  brands,
+  title,
+  getBrands,
+  setFilter,
+  setSelectedBrands,
+  selectedBrands,
+}) => {
   useEffect(() => {
     getBrands();
-  }, []);
+  }, [getBrands]);
 
   const onSearch = e => {
     setFilter(e.target.value);
+  };
+
+  const handleCheck = position => {
+    setSelectedBrands(brands[position]);
   };
 
   return (
@@ -63,9 +74,19 @@ const BrandsContainer = ({ brands, title, getBrands, setFilter }) => {
         </InputContainerStyled>
         <ListContainer>
           <ul>
-            {brands.map(item => (
+            {brands.map((item, index) => (
               <li key={item.slug}>
-                <CheckBox id={item.slug} label={item.name} name='brand' />
+                <CheckBox
+                  defaultChecked={
+                    item.slug === 'all' && selectedBrands.length === 0
+                      ? true
+                      : false
+                  }
+                  id={item.slug}
+                  label={item.name}
+                  name='brand'
+                  onChange={() => handleCheck(index)}
+                />
               </li>
             ))}
           </ul>
@@ -87,6 +108,7 @@ BrandsContainer.propTypes = {
 const mapStateToProps = state => {
   return {
     brands: state.brands.brands,
+    selectedBrands: state.brands.selectedBrands,
   };
 };
 
@@ -94,6 +116,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getBrands: () => dispatch(brandActions.getBrands()),
     setFilter: filter => dispatch(brandActions.setFilter(filter)),
+    setSelectedBrands: brand => dispatch(brandActions.setSelectedBrands(brand)),
   };
 };
 

@@ -4,6 +4,7 @@ export const FETCH_TAGS = 'FETCH_TAGS';
 export const FETCH_TAGS_SUCCESS = 'FETCH_TAGS_SUCCESS';
 export const FETCH_TAGS_FAIL = 'FETCH_TAGS_FAIL';
 export const SET_TAG_FILTER = 'SET_TAG_FILTER';
+export const SET_SELECTED_TAG = 'SET_SELECTED_TAG';
 
 export const getTags = () => {
   return async dispatch => {
@@ -36,5 +37,12 @@ export const setFilter = filter => {
   return {
     type: SET_TAG_FILTER,
     filter,
+  };
+};
+
+export const setSelectedTags = tag => {
+  return {
+    type: SET_SELECTED_TAG,
+    tag,
   };
 };

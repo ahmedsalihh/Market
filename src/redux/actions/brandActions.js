@@ -4,6 +4,7 @@ export const FETCH_BRANDS = 'FETCH_BRANDS';
 export const FETCH_BRANDS_SUCCESS = 'FETCH_BRANDS_SUCCESS';
 export const FETCH_BRANDS_FAIL = 'FETCH_BRANDS_FAIL';
 export const SET_BRAND_FILTER = 'SET_BRAND_FILTER';
+export const SET_SELECTED_BRAND = 'SET_SELECTED_BRAND';
 
 export const getBrands = () => {
   return async dispatch => {
@@ -34,5 +35,12 @@ export const setFilter = filter => {
   return {
     type: SET_BRAND_FILTER,
     filter,
+  };
+};
+
+export const setSelectedBrands = brand => {
+  return {
+    type: SET_SELECTED_BRAND,
+    brand,
   };
 };

@@ -30,7 +30,7 @@ const SpanStyled = styled.span`
   margin-left: 8px;
 `;
 
-const RadioButton = ({ id, label, name, onChange }) => (
+const RadioButton = ({ id, label, name, onChange, ...props }) => (
   <RadioButtonContainerStyled>
     <LabelStyled htmlFor={id}>
       <RadioButtonStyled
@@ -39,6 +39,7 @@ const RadioButton = ({ id, label, name, onChange }) => (
         name={name}
         value={label}
         onChange={onChange}
+        {...props}
       />
       <SpanStyled>{label}</SpanStyled>
     </LabelStyled>
@@ -46,7 +47,7 @@ const RadioButton = ({ id, label, name, onChange }) => (
 );
 
 RadioButton.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,

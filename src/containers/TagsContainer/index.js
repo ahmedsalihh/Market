@@ -43,13 +43,24 @@ const ListContainer = styled.div`
   overflow: auto;
 `;
 
-const TagsContainer = ({ tags, title, getTags, setFilter }) => {
+const TagsContainer = ({
+  tags,
+  title,
+  getTags,
+  setFilter,
+  setSelectedTags,
+  selectedTags,
+}) => {
   useEffect(() => {
     getTags();
   }, [getTags]);
 
   const onSearch = e => {
     setFilter(e.target.value);
+  };
+
+  const handleCheck = position => {
+    setSelectedTags(tags[position]);
   };
 
   return (
@@ -63,9 +74,17 @@ const TagsContainer = ({ tags, title, getTags, setFilter }) => {
         </InputContainerStyled>
         <ListContainer>
           <ul>
-            {tags.map(item => (
+            {tags.map((item, index) => (
               <li key={item}>
-                <CheckBox id={item} label={item} name='brand' />
+                <CheckBox
+                  defaultChecked={
+                    item === 'All' && selectedTags.length === 0 ? true : false
+                  }
+                  id={item}
+                  label={item}
+                  name='brand'
+                  onChange={() => handleCheck(index)}
+                />
               </li>
             ))}
           </ul>
@@ -82,6 +101,7 @@ TagsContainer.propTypes = {
 const mapStateToProps = state => {
   return {
     tags: state.tags.tags,
+    selectedTags: state.tags.selectedTags,
   };
 };
 
@@ -89,6 +109,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getTags: () => dispatch(tagActions.getTags()),
     setFilter: filter => dispatch(tagActions.setFilter(filter)),
+    setSelectedTags: tag => dispatch(tagActions.setSelectedTags(tag)),
   };
 };
 

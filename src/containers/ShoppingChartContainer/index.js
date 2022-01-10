@@ -8,7 +8,6 @@ const ShopingChartContainerStyled = styled.div`
   border-radius: 2px;
   border: 8px solid #1ea4ce;
   background-color: #fff;
-  min-height: 338.25px;
   padding-top: 26px;
   padding-bottom: 16px;
   padding-left: 22px;

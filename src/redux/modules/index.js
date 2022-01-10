@@ -5,6 +5,7 @@ import brands from './brandReducer';
 import tags from './tagReducer';
 import products from './productReducer';
 import shoppingChart from './shoppingChartReducer';
+import sorting from './sortingReducer';
 
 const createRootReducer = history =>
   combineReducers({
@@ -13,6 +14,7 @@ const createRootReducer = history =>
     tags,
     products,
     shoppingChart,
+    sorting,
   });
 
 export default createRootReducer;

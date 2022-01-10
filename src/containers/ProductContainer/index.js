@@ -59,9 +59,8 @@ const ProductsContainer = ({ products, getProducts, addToChart }) => {
 ProductsContainer.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
-      image: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
-      slug: PropTypes.number.isRequired,
+      slug: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };
