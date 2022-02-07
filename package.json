@@ -24,6 +24,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "start:dev": "set PORT=3001 && react-scripts start",
     "start-other": "PORT=3006 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

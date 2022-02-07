@@ -42,6 +42,7 @@ const TagsContainer = ({
   setFilter,
   setSelectedTags,
   selectedTags,
+  onReset,
 }) => {
   useEffect(() => {
     getTags();
@@ -72,6 +73,7 @@ const TagsContainer = ({
                 id='all'
                 label='All'
                 name='brand'
+                onChange={() => onReset()}
               />
             </li>
             {tags.map((item, index) => (
@@ -80,6 +82,7 @@ const TagsContainer = ({
                   id={item}
                   label={item}
                   name='brand'
+                  checked={selectedTags.includes(item)}
                   onChange={() => handleCheck(index)}
                 />
               </li>
@@ -107,6 +110,7 @@ const mapDispatchToProps = dispatch => {
     getTags: () => dispatch(tagActions.getTags()),
     setFilter: filter => dispatch(tagActions.setFilter(filter)),
     setSelectedTags: tag => dispatch(tagActions.setSelectedTags(tag)),
+    onReset: () => dispatch(tagActions.onReset()),
   };
 };
 

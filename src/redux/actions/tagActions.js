@@ -5,11 +5,14 @@ export const FETCH_TAGS_SUCCESS = 'FETCH_TAGS_SUCCESS';
 export const FETCH_TAGS_FAIL = 'FETCH_TAGS_FAIL';
 export const SET_TAG_FILTER = 'SET_TAG_FILTER';
 export const SET_SELECTED_TAG = 'SET_SELECTED_TAG';
+export const RESET_TAG = 'RESET_TAG';
 
 export const getTags = () => {
   return async dispatch => {
     try {
-      const tags = await Axios.get('https://getir-market-case-study.herokuapp.com/api/items');
+      const tags = await Axios.get(
+        'https://getir-market-case-study.herokuapp.com/api/items',
+      );
       const uniqueTags = new Set();
       tags.data.map(item => item.tags.map(t => uniqueTags.add(t)));
       dispatch(getTagsSuccess(Array.from(uniqueTags)));
@@ -44,5 +47,11 @@ export const setSelectedTags = tag => {
   return {
     type: SET_SELECTED_TAG,
     tag,
+  };
+};
+
+export const onReset = () => {
+  return {
+    type: RESET_TAG,
   };
 };

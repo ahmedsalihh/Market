@@ -42,6 +42,7 @@ const BrandsContainer = ({
   setFilter,
   setSelectedBrands,
   selectedBrands,
+  onReset,
 }) => {
   useEffect(() => {
     getBrands();
@@ -72,6 +73,7 @@ const BrandsContainer = ({
                 id='all'
                 label='All'
                 name='brand'
+                onChange={() => onReset()}
               />
             </li>
             {brands.map((item, index) => (
@@ -80,6 +82,7 @@ const BrandsContainer = ({
                   id={item.slug}
                   label={item.name}
                   name='brand'
+                  checked={selectedBrands.some(s => s.slug === item.slug)}
                   onChange={() => handleCheck(index)}
                 />
               </li>
@@ -112,6 +115,7 @@ const mapDispatchToProps = dispatch => {
     getBrands: () => dispatch(brandActions.getBrands()),
     setFilter: filter => dispatch(brandActions.setFilter(filter)),
     setSelectedBrands: brand => dispatch(brandActions.setSelectedBrands(brand)),
+    onReset: () => dispatch(brandActions.onReset()),
   };
 };
 

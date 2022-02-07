@@ -49,6 +49,11 @@ export default (state = defaultState, action) => {
         ...state,
         selectedTags: [...tmpSelected],
       };
+    case tagActions.RESET_TAG:
+      return {
+        ...state,
+        selectedTags: [],
+      };
     default:
       return state;
   }

@@ -54,6 +54,11 @@ export default (state = defaultState, action) => {
         ...state,
         selectedBrands: [...tmpSelected],
       };
+    case brandActions.RESET_BRAND:
+      return {
+        ...state,
+        selectedBrands: [],
+      };
     default:
       return state;
   }
