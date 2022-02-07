@@ -9,7 +9,7 @@ export const SET_SELECTED_TAG = 'SET_SELECTED_TAG';
 export const getTags = () => {
   return async dispatch => {
     try {
-      const tags = await Axios.get('http://localhost:3000/items');
+      const tags = await Axios.get('https://getir-market-case-study.herokuapp.com/api/items');
       const uniqueTags = new Set();
       tags.data.map(item => item.tags.map(t => uniqueTags.add(t)));
       dispatch(getTagsSuccess(Array.from(uniqueTags)));

@@ -25,7 +25,7 @@ export const getProducts = (
 
     try {
       const products = await Axios.get(
-        `http://localhost:3000/items?_page=1&_limit=20${sortQuery}${brandQuery}${tagQuery}${typeQuery}`,
+        `https://getir-market-case-study.herokuapp.com/api/items?_page=1&_limit=20${sortQuery}${brandQuery}${tagQuery}${typeQuery}`,
       );
       dispatch(getProductsSuccess(products.data));
     } catch (error) {

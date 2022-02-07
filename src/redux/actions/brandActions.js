@@ -9,7 +9,7 @@ export const SET_SELECTED_BRAND = 'SET_SELECTED_BRAND';
 export const getBrands = () => {
   return async dispatch => {
     try {
-      const brands = await Axios.get('http://localhost:3000/companies');
+      const brands = await Axios.get('https://getir-market-case-study.herokuapp.com/api/companies');
       dispatch(getBrandsSuccess(brands.data));
     } catch (error) {
       dispatch(getBrandsFail(error));
