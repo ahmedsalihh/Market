@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import MetricsListContainer from '../../components/MetricsListContainer';
 
 import RadioButton from '../../components/RadioButton';
 import { sortingItems } from '../../constants';
@@ -29,15 +30,6 @@ const ItemsContainer = styled.div`
   padding-bottom: 13px;
 `;
 
-const ListContainer = styled.div`
-  display: flex;
-  flex-diretion: column;
-  background-color: #fff;
-  max-height: 184px;
-  min-height: 184px;
-  overflow: auto;
-`;
-
 const SortingComponent = ({ setSortingType }) => {
   const handleChange = index => {
     setSortingType(index);
@@ -48,7 +40,7 @@ const SortingComponent = ({ setSortingType }) => {
         <TitleText>Sorting</TitleText>
       </TitleContainer>
       <ItemsContainer>
-        <ListContainer>
+        <MetricsListContainer>
           <ul>
             {sortingItems.map(item => (
               <li key={item.id}>
@@ -62,7 +54,7 @@ const SortingComponent = ({ setSortingType }) => {
               </li>
             ))}
           </ul>
-        </ListContainer>
+        </MetricsListContainer>
       </ItemsContainer>
     </SotringContainerStyled>
   );

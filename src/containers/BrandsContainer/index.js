@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import CheckBox from '../../components/CheckBox';
 import Input from '../../components/Input';
+import MetricsListContainer from '../../components/MetricsListContainer';
 
 import * as brandActions from '../../redux/actions/brandActions';
 
@@ -32,15 +33,6 @@ const ItemsContainer = styled.div`
 
 const InputContainerStyled = styled.div`
   margin-bottom: 17px;
-`;
-
-const ListContainer = styled.div`
-  display: flex;
-  flex-diretion: column;
-  background-color: #fff;
-  max-height: 184px;
-  min-height: 184px;
-  overflow: auto;
 `;
 
 const BrandsContainer = ({
@@ -72,7 +64,7 @@ const BrandsContainer = ({
         <InputContainerStyled>
           <Input placeholder={`Search ${title}`} onChange={onSearch} />
         </InputContainerStyled>
-        <ListContainer>
+        <MetricsListContainer>
           <ul>
             <li>
               <CheckBox
@@ -93,7 +85,7 @@ const BrandsContainer = ({
               </li>
             ))}
           </ul>
-        </ListContainer>
+        </MetricsListContainer>
       </ItemsContainer>
     </BrandsContainerStyled>
   );
